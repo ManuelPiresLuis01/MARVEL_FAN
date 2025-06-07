@@ -1,0 +1,34 @@
+{
+  "name": "marvel_fan",
+  "version": "1.0.0",
+  "description": "A website for every marvel fan who like search thinks about marvel character and other",
+  "main": "index.js",
+  "type": "module",
+  "scripts": {
+    "dev": "nodemon src/server.js",
+    "start": "node src/server.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ManuelPiresLuis01/MARVEL_FAN.git"
+  },
+  "author": "MAnuel Pires Luis",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/ManuelPiresLuis01/MARVEL_FAN/issues"
+  },
+  "homepage": "https://github.com/ManuelPiresLuis01/MARVEL_FAN#readme",
+  "dependencies": {
+    "bcrypt": "^6.0.0",
+    "cors": "^2.8.5",
+    "dotenv": "^16.5.0",
+    "express": "^5.1.0",
+    "jsonwebtoken": "^9.0.2",
+    "mysql2": "^3.14.1",
+    "nodemailer": "^7.0.3"
+  },
+  "devDependencies": {
+    "nodemon": "^3.1.10"
+  }
+}

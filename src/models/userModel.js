@@ -10,8 +10,21 @@ const userModel = {
       async findByEmail(email) {
         const sql = "SELECT * FROM users WHERE email = ?";
         const [rows] = await db.execute(sql, [email]);
-        return rows[0]; // retorna o usuário ou undefined
+        return rows[0]; 
+      },
+      async activateAccount(email){
+        const sql = "UPDATE users SET status = 'active' WHERE email = ?;"
+        await db.execute(sql, [email]);
+      },
+      async deleteCode(email) {
+        const sql = "UPDATE users SET code = '' WHERE email = ?;"
+        await db.execute(sql, [email]);
+      },
+      async newCode(code,email) {
+        const sql = "UPDATE users SET code = ? WHERE email = ?;"
+        await db.execute(sql, [code,email]);
       }
+      
       
 };
 

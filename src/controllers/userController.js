@@ -110,7 +110,7 @@ const userController = {
     }
   },
 
-  async recoveryAccount(req, res) {
+  async sendRecoveryCode(req, res) {
     const { email } = req.body;
     if (!email) 
       return res.status(400).json({ response: "Please fill in all required fields." });
@@ -127,8 +127,29 @@ const userController = {
         } else {
         res.status(404).json({ response: "User not found" });
         }
-    }
+    },
 
+    async recoveryAccount(req, res) {
+      const { email, code, newPassword } = req.body;
+
+      if (!email || !code || !newPassword) 
+        return res.status(400).json({ response: "Please fill in all required fields." });
+      
+      const user = await userModel.findByEmail(email);
+      if (user) {
+        if (user.code === code) {
+          const passwordHash = await hashPassword(newPassword);
+          await userModel.updatePassword(email, passwordHash);
+          await userModel.deleteCode(email);
+          res.json({ response: "Password updated successfully!" });
+        } else {
+          res.status(400).json({ response: "Invalid or expired code" });
+        }
+      }
+      else {
+        res.status(404).json({ response: "User not found" });
+      }
+    }
 
 };
 

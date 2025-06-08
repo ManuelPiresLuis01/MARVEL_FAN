@@ -24,6 +24,10 @@ const userModel = {
         const sql = "UPDATE users SET code = ? WHERE email = ?;"
         await db.execute(sql, [code,email]);
       },
+      async updatePassword(email, passwordHash) {
+        const sql = "UPDATE users SET password = ? WHERE email = ?;"
+        await db.execute(sql, [passwordHash, email]);
+      },
       async status(email) {
         const sql = "SELECT status FROM users WHERE email = ?;"
         const [rows] = await db.execute(sql, [email]);

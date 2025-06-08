@@ -21,10 +21,12 @@
   "homepage": "https://github.com/ManuelPiresLuis01/MARVEL_FAN#readme",
   "dependencies": {
     "bcrypt": "^6.0.0",
+    "cloudinary": "^2.6.1",
     "cors": "^2.8.5",
     "dotenv": "^16.5.0",
     "express": "^5.1.0",
     "jsonwebtoken": "^9.0.2",
+    "multer": "^2.0.1",
     "mysql2": "^3.14.1",
     "nodemailer": "^7.0.3"
   },

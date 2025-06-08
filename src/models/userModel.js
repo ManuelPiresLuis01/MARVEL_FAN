@@ -23,9 +23,12 @@ const userModel = {
       async newCode(code,email) {
         const sql = "UPDATE users SET code = ? WHERE email = ?;"
         await db.execute(sql, [code,email]);
+      },
+      async status(email) {
+        const sql = "SELECT status FROM users WHERE email = ?;"
+        const [rows] = await db.execute(sql, [email]);
+        return rows[0].status; 
       }
-      
-      
 };
 
 export default userModel;

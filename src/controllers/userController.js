@@ -1,6 +1,6 @@
 import numberGenerator from "../utils/numbergenerator.js";
 import userModel from "../models/userModel.js";
-import sendEmail from "../services/sendEmailService.js";
+import { activationEmail , recoveryEmail} from "../services/sendEmailService.js";
 import { hashPassword } from "../services/hashService.js";
 
 const userController = {
@@ -52,7 +52,7 @@ const userController = {
       );
 
       try {
-        await sendEmail(email,name,code);
+        await  activationEmail (email,name,code);
       } catch (emailError) {
         return res.status(500).json({ response: "User created but error sending email" });
       }
@@ -69,6 +69,9 @@ const userController = {
 
     if (!email ||!code ) 
         return res.status(400).json({ response: "Please fill in all required fields." });
+
+    if (await userModel.status(email) == "active") 
+        return res.status(400).json({ response: "Account already activated" });
 
     const user = await userModel.findByEmail(email);
 
@@ -90,13 +93,13 @@ const userController = {
 
     if (!email) 
       return res.status(400).json({ response: "Please fill in all required fields." });
-
+        
     const user = await userModel.findByEmail(email);
 
     if (user) {
       const code = numberGenerator();
       try {
-        await sendEmail(email, user.name, code);
+        await activationEmail (email, user.name, code);
         await userModel.newCode(code, email);
         res.json({ response: "New activation code sent!" });
       } catch (error) {
@@ -105,7 +108,27 @@ const userController = {
     } else {
       res.status(404).json({ response: "User not found" });
     }
-  }
+  },
+
+  async recoveryAccount(req, res) {
+    const { email } = req.body;
+    if (!email) 
+      return res.status(400).json({ response: "Please fill in all required fields." });
+    const user = await userModel.findByEmail(email);
+    if (user) {
+        const code = numberGenerator();
+        try {
+            await recoveryEmail(email, user.name, code);
+            await userModel.newCode(code, email);
+            res.json({ response: "Recovery code sent to your email!" });
+        } catch (error) {
+            res.status(500).json({ response: "Error sending recovery email" });
+        }
+        } else {
+        res.status(404).json({ response: "User not found" });
+        }
+    }
+
 
 };
 

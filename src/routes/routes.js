@@ -11,7 +11,6 @@ routes.put("/auth/activateAccount",userController.activationAccount);
 routes.put("/auth/resendCode",userController.resendCode);
 routes.put("/auth/recoveryAccount",userController.sendRecoveryCode);
 routes.put("/auth/resetPassword",userController.recoveryAccount);
-
 routes.post("/auth/login", authController.login);
 
 routes.put('/upload/profile-picture', verifyToken, upload.single('image'), uploadImage);

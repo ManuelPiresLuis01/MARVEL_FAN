@@ -1,0 +1,23 @@
+{
+  "name": "marvel-fan-api",
+  "version": "1.0.0",
+  "description": "Backend API for the Marvel Fan application, built with Node.js and Express.",
+  "main": "src/server.js",
+  "scripts": {
+    "dev": "nodemon src/server.js",
+    "start": "node src/server.js"
+  },
+  "dependencies": {
+    "bcryptjs": "^2.4.3",
+    "dotenv": "^10.0.0",
+    "express": "^4.17.1",
+    "jsonwebtoken": "^8.5.1",
+    "mysql2": "^2.2.5",
+    "nodemailer": "^6.4.11"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.7"
+  },
+  "author": "Manuel Pires Luís",
+  "license": "MIT"
+}

@@ -177,22 +177,21 @@ npm run dev
 ## 🗂️ Project Structure
 
 ```
-src/
-│
-├── controllers/
-│   ├── authController.js
-│   └── userController.js
-│
-├── routes/
-│   └── index.js
-│
-├── services/
-│   └── sendEmailService.js
-│
-├── utils/
-│   └── authUserEmail.js
-│
-└── server.js
+MARVEL_FAN
+├── src
+│   ├── controllers
+│   │   ├── authController.js
+│   │   └── userController.js
+│   ├── routes
+│   │   └── index.js
+│   ├── services
+│   │   └── sendEmailService.js
+│   ├── utils
+│   │   └── authUserEmail.js
+│   └── server.js
+├── .env.example
+├── package.json
+└── tsconfig.json
 ```
 
 ---
@@ -201,5 +200,3 @@ src/
 
 Created by **Manuel Pires Luís**.  
 Feel free to reach out if you have any questions!
-
----

@@ -14,6 +14,6 @@ routes.put("/auth/resetPassword",userController.recoveryAccount);
 
 routes.post("/auth/login", authController.login);
 
-routes.post('/upload/profile-picture',verifyToken,upload.single('image'),uploadImage);
+routes.put('/upload/profile-picture', verifyToken, upload.single('image'), uploadImage);
 
 export default routes;
